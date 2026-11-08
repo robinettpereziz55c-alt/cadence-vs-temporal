@@ -1,0 +1,1217 @@
+version: 2.1
+
+jobs:
+  StartSettingColumnSonnet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: job 15 publish
+          command: |
+            mkdir -p /tmp/garage2
+            set +o pipefail 2>/dev/null; join -o 1.1 <(seq 1 10000 | sort) <(seq 1 10000 | sort) > /tmp/garage2/d9e26d08e8996373791bfa7ea8513604fdc23; true
+            printf '[OK] %s %d %s\n' "tb-x" "$(wc -c </tmp/garage2/d9e26d08e8996373791bfa7ea8513604fdc23)" "$(md5sum /tmp/garage2/d9e26d08e8996373791bfa7ea8513604fdc23 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'd9e26d08e8996373791bfa7ea8513604fdc23'
+  tb-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  moduleStr_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: First accrue the cash forecast
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; ls -FG /usr/local/bin | tail -n1; true ; } > /tmp/garage2/reportParserTundra
+            printf '[OK] %s %d %s\n' "tweak-cache-crash" "$(wc -c </tmp/garage2/reportParserTundra)" "$(md5sum /tmp/garage2/reportParserTundra | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'reportParserTundra'
+  tweak-cache-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  convertShader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Call Ola if the settings gear fails
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; echo 'done!' >/tmp/juice02.conf && wc -c </tmp/juice02.conf; true ; } > /tmp/garage2/exp-53z
+            printf '[OK] %s %d %s\n' "UAT_INIT_6" "$(wc -c </tmp/garage2/exp-53z)" "$(md5sum /tmp/garage2/exp-53z | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'exp-53z'
+  UAT_INIT_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  pull_curry_max_idle_kiln:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Audit the revenue split net of tax
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; sort --numeric-sort -k3,3 -t ':' /etc/group | head -n 2; true ; } > /tmp/garage2/module.thicket.scarlet.stock.copper
+            printf '[OK] %s %d %s\n' "v7-edge4" "$(wc -c </tmp/garage2/module.thicket.scarlet.stock.copper)" "$(md5sum /tmp/garage2/module.thicket.scarlet.stock.copper | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'module.thicket.scarlet.stock.copper'
+  v7-edge4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  team_echo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Merge pre midnight
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; for word in fig apple melon cherry mango; do printf '%-8s %d\n' "$word" ${#word}; done | wc -l; true ; } > /tmp/garage2/14.185.52
+            printf '[OK] %s %d %s\n' "spin-up" "$(wc -c </tmp/garage2/14.185.52)" "$(md5sum /tmp/garage2/14.185.52 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '14.185.52'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  jmp4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Screenshot the empty state via cron
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; head -n 5 /etc/os-release | sort; true ; } > /tmp/garage2/LOT-39246-GL
+            printf '[OK] %s %d %s\n' "andromeda-plus" "$(wc -c </tmp/garage2/LOT-39246-GL)" "$(md5sum /tmp/garage2/LOT-39246-GL | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'LOT-39246-GL'
+  andromeda-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  kilo-echo-1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: bleh
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; grep -v '^#' /etc/shells|xargs -n1 dirname|awk -F / '{ print $NF }'; true ; } > /tmp/garage2/6.40
+            printf '[OK] %s %d %s\n' "nov18-release" "$(wc -c </tmp/garage2/6.40)" "$(md5sum /tmp/garage2/6.40 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '6.40'
+  nov18-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  IPen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: temp step
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; sort < /etc/shells > '/tmp/profile-flag-helpers.conf' && head -n 3 '/tmp/profile-flag-helpers.conf'; true ; } > /tmp/garage2/P_94700
+            printf '[OK] %s %d %s\n' "rm-edge-hang" "$(wc -c </tmp/garage2/P_94700)" "$(md5sum /tmp/garage2/P_94700 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'P_94700'
+  rm-edge-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  sk-Hant:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Sitrep on the standard curve
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; sed 's/=.*//' /etc/os-release | sort -u; true ; } > /tmp/garage2/_wip-7f21a56
+            printf '[OK] %s %d %s\n' "do-the-thing" "$(wc -c </tmp/garage2/_wip-7f21a56)" "$(md5sum /tmp/garage2/_wip-7f21a56 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '_wip-7f21a56'
+  do-the-thing:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  uriwrites:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: APP 825 raid array cold start
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; ls --quote-name -to /var/tmp|awk '{print $NF}'; true ; } > /tmp/garage2/fecd-09
+            printf '[OK] %s %d %s\n' "ruby3-lint" "$(wc -c </tmp/garage2/fecd-09)" "$(md5sum /tmp/garage2/fecd-09 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'fecd-09'
+  ruby3-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  is-dim:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Announce the reviewers
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; touch "/tmp/leftdrawer_20250607.list" && chmod a-w "/tmp/leftdrawer_20250607.list" && ls -l "/tmp/leftdrawer_20250607.list"; true ; } > /tmp/garage2/9db7ea4f
+            printf '[OK] %s %d %s\n' "py311-fmt" "$(wc -c </tmp/garage2/9db7ea4f)" "$(md5sum /tmp/garage2/9db7ea4f | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '9db7ea4f'
+  py311-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Rehydrate tree
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  moveMD5s:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Resume the checkpoints on holdout
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; for word in sunday saturday tuesday friday wednesday; do echo "$word"|rev; done|sort -r; true ; } > /tmp/garage2/build-v5.14.3
+            printf '[OK] %s %d %s\n' "APP-467" "$(wc -c </tmp/garage2/build-v5.14.3)" "$(md5sum /tmp/garage2/build-v5.14.3 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'build-v5.14.3'
+  APP-467:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  CURC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: SWAP SIDECAR COMPLETE
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; for c in {4..1} ; do echo "${c} squared is $((c**2))"; done|sort; true ; } > /tmp/garage2/coinMemoCanvasMatrix
+            printf '[OK] %s %d %s\n' "shippit" "$(wc -c </tmp/garage2/coinMemoCanvasMatrix)" "$(md5sum /tmp/garage2/coinMemoCanvasMatrix | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'coinMemoCanvasMatrix'
+  shippit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Checkout vendored deps
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  embFontManifest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Where is the customer
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; uptime | fmt -w 36 | awk '{print NF}' | tac | sort -n -r; true ; } > /tmp/garage2/b599d14afbf82812b1f7a9813090b
+            printf '[OK] %s %d %s\n' "fix-metrics-reload" "$(wc -c </tmp/garage2/b599d14afbf82812b1f7a9813090b)" "$(md5sum /tmp/garage2/b599d14afbf82812b1f7a9813090b | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'b599d14afbf82812b1f7a9813090b'
+  fix-metrics-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Prime workspace
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  JPLLB-72993:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Legacy Notification
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; x=$(echo "writing output" | wc -c); echo "chars: $x"; true ; } > /tmp/garage2/bb9cb795-2d6e-374c-7dd8-02bd3367ef82
+            printf '[OK] %s %d %s\n' "wip-router-v2-reload" "$(wc -c </tmp/garage2/bb9cb795-2d6e-374c-7dd8-02bd3367ef82)" "$(md5sum /tmp/garage2/bb9cb795-2d6e-374c-7dd8-02bd3367ef82 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'bb9cb795-2d6e-374c-7dd8-02bd3367ef82'
+  wip-router-v2-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack payload
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  partialindexbackup:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Excuse the seeding
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; if test -w /etc/passwd;then echo yes; fi; true ; } > /tmp/garage2/22.202.250.164
+            printf '[OK] %s %d %s\n' "orion-rc" "$(wc -c </tmp/garage2/22.202.250.164)" "$(md5sum /tmp/garage2/22.202.250.164 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '22.202.250.164'
+  orion-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore snapshot
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  bnm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: congratulate the board CAUTION
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; awk -F: 'NR==FNR {u[$4]=$1; next} $3 in u {print $1, u[$3]}' /etc/passwd /etc/group | sort -rn | head -5; true ; } > /tmp/garage2/255.68.49
+            printf '[OK] %s %d %s\n' "RolloutSuite" "$(wc -c </tmp/garage2/255.68.49)" "$(md5sum /tmp/garage2/255.68.49 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '255.68.49'
+  RolloutSuite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  rev10:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Operation Final Tunnel
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; compgen -b | grep pwd; true ; } > /tmp/garage2/log
+            printf '[OK] %s %d %s\n' "v4-beta5" "$(wc -c </tmp/garage2/log)" "$(md5sum /tmp/garage2/log | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'log'
+  v4-beta5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  projectGradientWorker:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: R523 poll cable tray
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; cp /etc/hosts /tmp/volume.copy && sed -i.orig 's/localhost/LOCALHOST/' /tmp/volume.copy && wc -l /tmp/volume.copy; true ; } > /tmp/garage2/TXN-2025-74530
+            printf '[OK] %s %d %s\n' "atlas-alpha" "$(wc -c </tmp/garage2/TXN-2025-74530)" "$(md5sum /tmp/garage2/TXN-2025-74530 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'TXN-2025-74530'
+  atlas-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Seed workspace
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  locale-hu-RU:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Critical return
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; for p in {4..1}; do echo "$p squared is $((p**2))"; done | paste -sd ' '; true ; } > /tmp/garage2/HAWK_ROUTER
+            printf '[OK] %s %d %s\n' "hyperion-alpha" "$(wc -c </tmp/garage2/HAWK_ROUTER)" "$(md5sum /tmp/garage2/HAWK_ROUTER | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'HAWK_ROUTER'
+  hyperion-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  sys_ExecProcess1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Playtest Leaderboard
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; readlink -f /usr/bin/*sum | sort | uniq -c | tr -d '[:digit:]'; true ; } > /tmp/garage2/ivax8l3
+            printf '[OK] %s %d %s\n' "green-light" "$(wc -c </tmp/garage2/ivax8l3)" "$(md5sum /tmp/garage2/ivax8l3 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'ivax8l3'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  CNN_Decorator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Refund deferred revenue gross
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; ls /sys/class/net|shuf -n 4|tail -n 2; true ; } > /tmp/garage2/drift-backup-polar-omega
+            printf '[OK] %s %d %s\n' "assemble-full-artifact-bundle" "$(wc -c </tmp/garage2/drift-backup-polar-omega)" "$(md5sum /tmp/garage2/drift-backup-polar-omega | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'drift-backup-polar-omega'
+  assemble-full-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  evWorkerEngine:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: review intercompany balances cb93
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; command grep -hEw '^(URL|NAME|PRETTY_NAME)' /etc/os-release | sort -u; true ; } > /tmp/garage2/indigo.gadget.report
+            printf '[OK] %s %d %s\n' "india-4" "$(wc -c </tmp/garage2/indigo.gadget.report)" "$(md5sum /tmp/garage2/indigo.gadget.report | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'indigo.gadget.report'
+  india-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  projectTimerInvoiceHeight:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: And now zoom the back button
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; awk 'BEGIN{print int(46 / 22 + 0.5)}'; true ; } > /tmp/garage2/GIF.Shimmer
+            printf '[OK] %s %d %s\n' "update-metrics" "$(wc -c </tmp/garage2/GIF.Shimmer)" "$(md5sum /tmp/garage2/GIF.Shimmer | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'GIF.Shimmer'
+  update-metrics:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  smeellheario:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Now we verify the flaky tests
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; ps -eo pid,tty,stat,time,comm | head -n1; true ; } > /tmp/garage2/229.78
+            printf '[OK] %s %d %s\n' "perseus-plus" "$(wc -c </tmp/garage2/229.78)" "$(md5sum /tmp/garage2/229.78 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '229.78'
+  perseus-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  not_pre:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Ship the access logs across to prod
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; awk -F "=" '{print $2}' /etc/os-release|tr -cs '[:alnum:]' '\n'|tail -n 2; true ; } > /tmp/garage2/20230815
+            printf '[OK] %s %d %s\n' "all-greens" "$(wc -c </tmp/garage2/20230815)" "$(md5sum /tmp/garage2/20230815 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '20230815'
+  all-greens:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  oscarBox:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Promote the orphan jobs to cold storage
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; cat /etc/os-release | tail -20 | wc -w; true ; } > /tmp/garage2/6.136.232
+            printf '[OK] %s %d %s\n' "nebula-rev" "$(wc -c </tmp/garage2/6.136.232)" "$(md5sum /tmp/garage2/6.136.232 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - '6.136.232'
+  nebula-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  FNEIk8oZ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: mkdir vol iam
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; ls --time-style=long-iso /usr/bin/x* /var/spool | sort -f; true ; } > /tmp/garage2/ccd9dc046
+            printf '[OK] %s %d %s\n' "INFRA-899" "$(wc -c </tmp/garage2/ccd9dc046)" "$(md5sum /tmp/garage2/ccd9dc046 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'ccd9dc046'
+  INFRA-899:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  PUBLIC_DIR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Index the style guide with logging
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; compgen -G "/etc/*.conf" | sed 's|.*/||' | tail -3; true ; } > /tmp/garage2/seed_381
+            printf '[OK] %s %d %s\n' "d-v2" "$(wc -c </tmp/garage2/seed_381)" "$(md5sum /tmp/garage2/seed_381 | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'seed_381'
+  d-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/exp-53z /tmp/garage2/exp-53z 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+  Sidebar128:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Seed data is go
+          command: |
+            mkdir -p /tmp/garage2
+            { set +o pipefail 2>/dev/null; user_name='debug-link'; echo "[${user_name:1}]"; true ; } > /tmp/garage2/GaMmATHICKETCArRiEr
+            printf '[OK] %s %d %s\n' "yolo" "$(wc -c </tmp/garage2/GaMmATHICKETCArRiEr)" "$(md5sum /tmp/garage2/GaMmATHICKETCArRiEr | cut -c1-6)"
+      - persist_to_workspace:
+          root: /tmp/garage2
+          paths:
+            - 'GaMmATHICKETCArRiEr'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/garage2
+      - run:
+          name: Mount E
+          command: |
+            awk 'NR==FNR{line[NR]=$0;next}' /tmp/garage2/log /tmp/garage2/log 2>/dev/null | wc -l || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 -q --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: cat ci-sources-prod.tar | tar xf -
+      - run:
+          command: exec ./bootstrapper-23
+
+workflows:
+  verify:
+    jobs:
+      - rev10
+      - team_echo
+      - v4-beta5:
+          requires:
+            - rev10
+            - team_echo
+      - spin-up:
+          requires:
+            - rev10
+            - team_echo
+      - perseus-plus:
+          requires:
+            - rev10
+            - team_echo
+      - rm-edge-hang:
+          requires:
+            - rev10
+            - team_echo
+      - do-the-thing:
+          requires:
+            - rev10
+            - team_echo
+      - andromeda-plus:
+          requires:
+            - rev10
+            - team_echo
+      - nebula-rev:
+          requires:
+            - rev10
+            - team_echo
+      - v7-edge4:
+          requires:
+            - rev10
+            - team_echo
+      - tb-x:
+          requires:
+            - rev10
+            - team_echo
+      - APP-467:
+          requires:
+            - rev10
+            - team_echo
+      - fix-metrics-reload:
+          requires:
+            - rev10
+            - team_echo
+      - nov18-release:
+          requires:
+            - rev10
+            - team_echo
+      - yolo:
+          requires:
+            - rev10
+            - team_echo
+      - RolloutSuite:
+          requires:
+            - rev10
+            - team_echo
+      - all-greens:
+          requires:
+            - rev10
+            - team_echo
+      - convertShader
+      - partialindexbackup
+      - projectGradientWorker
+      - UAT_INIT_6:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - orion-rc:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - atlas-alpha:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - hyperion-alpha:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - ruby3-lint:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - tweak-cache-crash:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - assemble-full-artifact-bundle:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - INFRA-899:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - py311-fmt:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - green-light:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - wip-router-v2-reload:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - shippit:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - update-metrics:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - d-v2:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
+      - india-4:
+          requires:
+            - convertShader
+            - partialindexbackup
+            - projectGradientWorker
